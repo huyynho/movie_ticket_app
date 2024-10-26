@@ -19,7 +19,10 @@ class LocalString extends Translations {
           "selectLanguage": "Chọn ngôn ngữ",
           "country": "Country",
           "minutes": "Minutes",
-          "searchMovie":"Search Movies"
+          "searchMovie": "Search Movies",
+          "description": "Description",
+          "imageFromMovie": "Images From the Movie",
+          "bookingNow": "Booking Now"
         },
         "en_EN": {
           "titleApp": "MOVIES APP",
@@ -37,7 +40,10 @@ class LocalString extends Translations {
           "selectLanguage": "Select a language",
           "country": "Country",
           "minutes": "Minutes",
-          "searchMovie":"Search Movies"
+          "searchMovie": "Search Movies",
+          "description": "Description",
+          "imageFromMovie": "Images From the Movie",
+          "bookingNow": "Booking Now"
         }
       };
 }

@@ -1,9 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:movie_ticket/common/login/login_controller.dart';
-import 'package:movie_ticket/common/register/register_screen.dart';
 import 'package:movie_ticket/config/color/color.dart';
 import 'package:movie_ticket/config/image/images_util.dart';
 import 'package:movie_ticket/config/route/routes.dart';

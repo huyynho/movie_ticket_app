@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         return const Center(
           child: SpinKitCubeGrid(
             color: Colors.black45,
-            size: 50.0,
+            size: 50,
           ),
         );
       },
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemesApp.dark,
             debugShowCheckedModeBanner: false,
             getPages: AppRouter.router,
-            initialRoute: AppRouterName.splash,
+            initialRoute: AppRouterName.movie,
           );
         },
       ),

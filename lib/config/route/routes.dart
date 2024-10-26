@@ -4,6 +4,7 @@ import 'package:movie_ticket/common/login/login_screen.dart';
 import 'package:movie_ticket/common/register/register_binding.dart';
 import 'package:movie_ticket/common/register/register_screen.dart';
 import 'package:movie_ticket/common/splash/splash_screen.dart';
+import 'package:movie_ticket/screen/detail/detail_screen.dart';
 import 'package:movie_ticket/screen/movie/movie_binding.dart';
 import 'package:movie_ticket/screen/movie/movie_screen.dart';
 
@@ -25,6 +26,11 @@ class AppRouter {
       page: () => MovieScreen(),
       binding: MovieBinding(),
     ),
+    GetPage(
+      name: AppRouterName.detail,
+      page: () => DetailScreen(movie: Get.arguments),
+    ),
+    
   ];
 }
 
@@ -33,5 +39,5 @@ class AppRouterName {
   static const login = '/login';
   static const register = '/register';
   static const movie = '/movie';
-  static const details = '/details';
+  static const detail = '/detail';
 }

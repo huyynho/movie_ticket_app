@@ -188,7 +188,9 @@ class _MovieScreenState extends State<MovieScreen> {
                   final movie = _movieController.movieData[index];
                   return GestureDetector(
                     onTap: () {
-                      Get.toNamed(AppRouterName.details);
+                      if (movie != null) {
+                        Get.toNamed(AppRouterName.detail, arguments: movie);
+                      }
                     },
                     child: MovieCard(movie: movie)
                     );
@@ -306,7 +308,7 @@ class MovieCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${movie.durationMinutes ?? 0} ${'minutes'.tr}',
+                        '${movie.durationMinutes} ${'minutes'.tr}',
                         style: TextStyle(
                           color: Colors.grey[600],
                         ),
