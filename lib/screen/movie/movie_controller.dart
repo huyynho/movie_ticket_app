@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:movie_ticket/model/movie_model.dart';
 import 'package:movie_ticket/utils/common_value/common_message.dart';
 import 'package:movie_ticket/utils/firebase/firebase_movie.dart';
@@ -9,10 +10,10 @@ import 'package:get/get.dart';
 class MovieController extends GetxController {
   final MovieService _service = MovieService();
   List<MovieModel> movieData = <MovieModel>[].obs;
-  var imageCarousels = <String>[].obs;
+  RxList<String> imageCarousels = <String>[].obs;
   RxBool isLoading = false.obs;
-  var selectedIndex = 0.obs;
-  var index = 1.obs;
+  RxInt selectedIndex = 0.obs;
+  RxInt index = 1.obs;
 
   @override
   void onInit() {
@@ -78,6 +79,7 @@ class MovieController extends GetxController {
     required double rating,
     required List<String> imageGallery,
     required int durationMinutes,
+    required double price,
   }) async {
     isLoading.value = true;
 
@@ -93,6 +95,7 @@ class MovieController extends GetxController {
       rating,
       imageGallery,
       durationMinutes,
+      price
     );
 
     String resultAdd = await _service.addMovie(movie);

@@ -49,27 +49,19 @@ class _MovieScreenState extends State<MovieScreen> {
             color: Colors.white,
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         actions: [
           IconButton(
             iconSize: 30,
             color: Colors.white,
             icon: const Icon(Icons.account_circle_sharp),
-            onPressed: () {
-              _movieController.addMovies(
-                  id: '1',
-                  title: 'Kính Vạn Hoa',
-                  description:
-                      "Sau sự thành công của hai phim điện ảnh chuyển thể từ hai tác phẩm đình đám của nhà văn Nguyễn Nhật Ánh, một tác phẩm nổi bật khác của nhà văn hiện đại thành công nhất Việt Nam chuẩn bị được đưa lên màn ảnh rộng: “Kính Vạn Hoa”.",
-                  imageUrl:
-                      "https://firebasestorage.googleapis.com/v0/b/movie-ticket-a5c4e.appspot.com/o/poster%2Fkinhvanhoa.jpg?alt=media&token=ef1b7413-d6d0-4a3a-9cfb-1e5e4256daaf",
-                  premiereDate: Timestamp.fromDate(DateTime(2024, 12, 31)),
-                  genre: "Hài, Phiêu lưu, Học đường",
-                  country: "Việt Nam",
-                  trailerUrl: "https://www.youtube.com/watch?v=2bPYkOeCqPw",
-                  rating: 5,
-                  imageGallery: [],
-                  durationMinutes: 180);
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -82,7 +74,8 @@ class _MovieScreenState extends State<MovieScreen> {
                 CarouselSlider(
                   options: CarouselOptions(
                     autoPlay: true,
-                    autoPlayAnimationDuration: const Duration(milliseconds: 5000),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 5000),
                     onPageChanged: (index, reason) {
                       _movieController.index.value = index;
                     },
@@ -116,7 +109,7 @@ class _MovieScreenState extends State<MovieScreen> {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color:Colors.grey.withOpacity(0.7),
+                      color: Colors.grey.withOpacity(0.7),
                     ),
                     child: Obx(() => Text(
                           '${_movieController.index.value + 1}/${_movieController.imageCarousels.length}',
@@ -146,7 +139,7 @@ class _MovieScreenState extends State<MovieScreen> {
               ),
               child: Row(
                 children: [
-                  // Text Input
+                  // Search Text
                   Expanded(
                     child: TextField(
                       controller: _searchController,
@@ -187,13 +180,12 @@ class _MovieScreenState extends State<MovieScreen> {
                 itemBuilder: (context, index) {
                   final movie = _movieController.movieData[index];
                   return GestureDetector(
-                    onTap: () {
-                      if (movie != null) {
-                        Get.toNamed(AppRouterName.detail, arguments: movie);
-                      }
-                    },
-                    child: MovieCard(movie: movie)
-                    );
+                      onTap: () {
+                        if (movie != null) {
+                          Get.toNamed(AppRouterName.detail, arguments: movie);
+                        }
+                      },
+                      child: MovieCard(movie: movie));
                 },
               );
             }),
@@ -204,18 +196,18 @@ class _MovieScreenState extends State<MovieScreen> {
       // Bottom Menu
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: const Icon(Icons.home),
+              label: 'home'.tr,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.qr_code),
-              label: 'My Ticket',
+              icon: const Icon(Icons.qr_code),
+              label: 'myTicket'.tr,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Setting',
+              icon: const Icon(Icons.settings),
+              label: 'setting'.tr,
             ),
           ],
           currentIndex: _movieController.selectedIndex.value,

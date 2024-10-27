@@ -12,6 +12,7 @@ class MovieModel {
   final double? rating;
   final List<String>? imageGallery;
   final int? durationMinutes;
+  final double? price;
 
   MovieModel(
     this.id,
@@ -25,12 +26,13 @@ class MovieModel {
     this.rating,
     this.imageGallery,
     this.durationMinutes,
+    this.price,
   );
 
   //# Object for fetch from Firebase
   factory MovieModel.fromDocument(DocumentSnapshot doc) {
     return MovieModel(
-      doc.id, 
+      doc.id,
       doc.get('title'),
       doc.get('description'),
       doc.get('imageUrl'),
@@ -41,6 +43,7 @@ class MovieModel {
       (doc.get('rating') as num?)?.toDouble(),
       List<String>.from(doc.get('imageGallery') ?? []),
       doc.get('durationMinutes'),
+      (doc.get('price') as num?)?.toDouble(),
     );
   }
 
@@ -57,6 +60,7 @@ class MovieModel {
       'rating': rating,
       'imageGallery': imageGallery,
       'durationMinutes': durationMinutes,
+      'price': price
     };
   }
 }

@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         builder: (_, __) {
           return GetMaterialApp(
             translations: LocalString(),
-            locale: const Locale('en', 'EN'),
+            locale: const Locale('vi', 'VI'),
             theme: ThemesApp.light,
             darkTheme: ThemesApp.dark,
             debugShowCheckedModeBanner: false,

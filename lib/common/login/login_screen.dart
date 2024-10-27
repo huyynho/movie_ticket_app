@@ -44,7 +44,7 @@ class LoginScreenState extends State<LoginScreen> {
           // Blur effect
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+              filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
               child: Container(color: Colors.transparent),
             ),
           ),
@@ -57,8 +57,8 @@ class LoginScreenState extends State<LoginScreen> {
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Colors.black.withOpacity(1), // At the bottom
-                    Colors.black.withOpacity(0.2), // At the top
+                    Colors.black.withOpacity(0.8), // bottom
+                    Colors.transparent, // top
                   ],
                 ),
               ),

@@ -7,4 +7,5 @@ class CommonMessage {
   static String success = 'Success';
   static String loginSuccess = 'Login Successful';
   static String addMovieSuccess = 'Add Movie Successful';
+  static String addSeatSuccess = 'Add Seat Successful';
 }

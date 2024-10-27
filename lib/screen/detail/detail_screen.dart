@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:movie_ticket/config/color/color.dart';
+import 'package:movie_ticket/config/route/routes.dart';
 import 'package:movie_ticket/model/movie_model.dart';
 import 'package:movie_ticket/screen/detail/detail_controller.dart';
 import 'package:readmore/readmore.dart';
@@ -31,7 +32,7 @@ class _DetailScreenState extends State<DetailScreen> {
       appBar: AppBar(
         backgroundColor: AppColor.primary,
         title: Text(widget.movie.title ?? "",
-            style: TextStyle(color: Colors.white)),
+            style: const TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
@@ -44,6 +45,7 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
       body: Stack(
         children: [
+          // Movie Detail
           Padding(
             padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
@@ -167,8 +169,8 @@ class _DetailScreenState extends State<DetailScreen> {
                     trimLines: 3,
                     colorClickableText: Colors.blue,
                     trimMode: TrimMode.Line,
-                    trimCollapsedText: 'Read More',
-                    trimExpandedText: 'Read Less',
+                    trimCollapsedText: 'readMore'.tr,
+                    trimExpandedText: 'readLess'.tr,
                   ),
                   const SizedBox(height: 8),
 
@@ -224,7 +226,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                 ),
                 onPressed: () {
-                  
+                  Get.toNamed(AppRouterName.booking, arguments: widget.movie);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
