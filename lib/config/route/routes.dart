@@ -5,7 +5,6 @@ import 'package:movie_ticket/common/register/register_binding.dart';
 import 'package:movie_ticket/common/register/register_screen.dart';
 import 'package:movie_ticket/common/splash/splash_screen.dart';
 import 'package:movie_ticket/screen/detail/detail_screen.dart';
-import 'package:movie_ticket/screen/movie/movie_binding.dart';
 import 'package:movie_ticket/screen/movie/movie_screen.dart';
 import 'package:movie_ticket/screen/seat/seat_screen.dart';
 
