@@ -256,7 +256,7 @@ class _SeatScreenState extends State<SeatScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Movie: ${widget.movie.title}',
+                            '${'movie'.tr}: ${widget.movie.title}',
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -264,19 +264,19 @@ class _SeatScreenState extends State<SeatScreen> {
                           ),
                           const SizedBox(height: 8),
                           Obx(() => Text(
-                                'Seat Number: ${_seatController.selectedSeatNames.value}',
+                                '${'seatNumber'.tr}: ${_seatController.selectedSeatNames.value}',
                                 style: const TextStyle(
                                     color: AppColor.grey, fontSize: 14),
                               )),
                           const SizedBox(height: 8),
                           Obx(() => Text(
-                                'Showtime: ${_seatController.selectedShowtime.value}',
+                                '${'showtime'.tr}: ${_seatController.selectedShowtime.value}',
                                 style: const TextStyle(
                                     color: AppColor.grey, fontSize: 14),
                               )),
                           const SizedBox(height: 8),
                           Obx(() => Text(
-                                'Cinema: ${_seatController.selectedCinema.value}',
+                                '${'cinemaLocation'.tr}: ${_seatController.selectedCinema.value}',
                                 style: const TextStyle(
                                     color: AppColor.grey, fontSize: 14),
                               )),
@@ -297,9 +297,9 @@ class _SeatScreenState extends State<SeatScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Total Amount',
-                          style: TextStyle(
+                        Text(
+                          'totalAmount'.tr,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),

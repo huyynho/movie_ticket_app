@@ -32,7 +32,10 @@ class LocalString extends Translations {
           "showtime": "Thời gian chiếu",
           "cinemaLocation": "Rạp chiếu",
           "readMore": "Xem thêm",
-          "readLess": "Ẩn bớt"
+          "readLess": "Ẩn bớt",
+          "movie": "Phim",
+          "seatNumber": "Số ghế",
+          "totalAmount": "Tổng tiền"
         },
         "en_EN": {
           "titleApp": "Movies App",
@@ -63,7 +66,10 @@ class LocalString extends Translations {
           "showtime": "Showtime",
           "cinemaLocation": "Cinema Location",
           "readMore": "Read more",
-          "readLess": "Read less"
+          "readLess": "Read less",
+          "movie": "Movie",
+          "seatNumber": "Seat Number",
+          "totalAmount": "Total Amount"
         }
       };
 }
