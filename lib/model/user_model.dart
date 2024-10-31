@@ -13,7 +13,7 @@ class UserModel {
     this.role,
   );
 
-  //# Object for fetch from Firebase
+  // Object for fetch from Firebase
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       map['id'],
@@ -24,7 +24,7 @@ class UserModel {
     );
   }
 
-  //# Object for saving to Firebase
+  // Object for saving to Firebase
   Map<String, dynamic> toMap() {
     return {
       'id': id,

@@ -34,7 +34,6 @@ class SeatModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'movieId': movieId,
       'numberOfRow': numberOfRow,
       'numberOfColumn': numberOfColumn,

@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_ticket/model/seat_detail_model.dart';
 import 'package:movie_ticket/model/seat_model.dart';
 import 'package:movie_ticket/utils/checker/network_checker.dart';
 import 'package:movie_ticket/utils/common_value/collection_name.dart';
 import 'package:movie_ticket/utils/common_value/common_message.dart';
+import 'package:movie_ticket/utils/common_value/common_status.dart';
 import 'package:movie_ticket/utils/firebase/firebase_instance.dart';
 import 'package:uuid/uuid.dart';
 
@@ -78,6 +80,33 @@ class SeatService {
   Future<String> deleteSeat(String id) async {
     return await handleCommonErrorFirebase(handleFunc: () async {
       await fireStoreInstance.collection(CollectionName.seats).doc(id).delete();
+    });
+  }
+
+  //# Update status "booked"
+  Future<String> updateSeatsStatus(String movieId, List<String> seatNumbers) async {
+    return await handleCommonErrorFirebase(handleFunc: () async {
+      final QuerySnapshot querySnapshot = await fireStoreInstance
+          .collection(CollectionName.seats)
+          .where('movieId', isEqualTo: movieId)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        final DocumentSnapshot seatDoc = querySnapshot.docs.first;
+        final List<dynamic> seatDetails = seatDoc['seatDetails'];
+
+        List<Map<String, dynamic>> updatedSeats = seatDetails.map((seat) {
+          if (seatNumbers.contains('${seat['row']}${seat['column']}')) {
+            seat['status'] = CommonStatus.booked;
+          }
+          return seat as Map<String, dynamic>;
+        }).toList();
+
+        await fireStoreInstance
+            .collection(CollectionName.seats)
+            .doc(seatDoc.id)
+            .update({'seatDetails': updatedSeats});
+      }
     });
   }
 }

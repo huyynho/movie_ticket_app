@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -6,6 +7,7 @@ import 'package:movie_ticket/config/color/color.dart';
 import 'package:movie_ticket/model/movie_model.dart';
 import 'package:movie_ticket/model/seat_detail_model.dart';
 import 'package:movie_ticket/screen/seat/seat_controller.dart';
+import 'package:movie_ticket/screen/ticket/ticket_controller.dart';
 import 'package:movie_ticket/utils/common_value/common_status.dart';
 
 class SeatScreen extends StatefulWidget {
@@ -19,11 +21,13 @@ class SeatScreen extends StatefulWidget {
 
 class _SeatScreenState extends State<SeatScreen> {
   late SeatController _seatController;
+  late TicketController _ticketController;
 
   @override
   void initState() {
     super.initState();
     _seatController = Get.put(SeatController());
+    _ticketController = Get.put(TicketController());
     _seatController.getSeatByMovieId(widget.movie.id ?? "");
   }
 
@@ -38,7 +42,7 @@ class _SeatScreenState extends State<SeatScreen> {
           {context.loaderOverlay.hide()},
       },
     );
-    context.loaderOverlay.show();
+    // context.loaderOverlay.show();
 
     return Scaffold(
       appBar: AppBar(
@@ -104,7 +108,8 @@ class _SeatScreenState extends State<SeatScreen> {
 
                     return Obx(() {
                       Color seatColor;
-                      bool isSelected = _seatController.selectedSeats.contains(seatName);
+                      bool isSelected =
+                          _seatController.selectedSeats.contains(seatName);
 
                       // Check status to fill color
                       if (seatDetail.status == CommonStatus.booked) {
@@ -118,7 +123,8 @@ class _SeatScreenState extends State<SeatScreen> {
                       // Seat Name
                       return GestureDetector(
                         onTap: seatDetail.status != CommonStatus.booked
-                            ? () => _seatController.seatSelection(seatName, widget.movie.price ?? 0.0)
+                            ? () => _seatController.seatSelection(
+                                seatName, widget.movie.price ?? 0.0)
                             : null,
                         child: Container(
                           margin: const EdgeInsets.all(4),
@@ -305,7 +311,8 @@ class _SeatScreenState extends State<SeatScreen> {
                           ),
                         ),
                         Obx(() {
-                          final formattedPrice = NumberFormat('#,###').format(_seatController.totalPrice.value);
+                          final formattedPrice = NumberFormat('#,###')
+                              .format(_seatController.totalPrice.value);
                           return Text(
                             '${formattedPrice}',
                             style: const TextStyle(
@@ -343,6 +350,16 @@ class _SeatScreenState extends State<SeatScreen> {
                 ),
               ),
               onPressed: () {
+                _ticketController.addTicket(
+                    movieId: widget.movie.id ?? "",
+                    movieTitle: widget.movie.title ?? "",
+                    userId: widget.movie.id ?? "",
+                    showtime: _seatController.selectedShowtime.value,
+                    seatNumbers: _seatController.selectedSeatNames.value,
+                    cinemaLocation: _seatController.selectedCinema.value,
+                    amount: _seatController.totalPrice.value,
+                    purchaseDate: Timestamp.now(),
+                    paymentStatus: true);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

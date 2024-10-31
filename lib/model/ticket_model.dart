@@ -3,10 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class TicketModel {
   final String? id;
   final String? movieId;
-  final String? cinemaId;
+  final String? movieTitle;
   final String? userId;
   final String? showtime;
-  final List<String>? seatNumbers;
+  final String? seatNumbers;
+  final String? cinemaLocation;
   final double? amount;
   final Timestamp? purchaseDate;
   final bool? paymentStatus;
@@ -14,39 +15,41 @@ class TicketModel {
   TicketModel(
     this.id,
     this.movieId,
-    this.cinemaId,
+    this.movieTitle,
     this.userId,
     this.showtime,
     this.seatNumbers,
+    this.cinemaLocation,
     this.amount,
     this.purchaseDate,
     this.paymentStatus,
   );
 
-  //# Object for fetch from Firebase
-  factory TicketModel.fromMap(Map<String, dynamic> map) {
-    return TicketModel(
-      map['id'],
-      map['movieId'],
-      map['cinemaId'],
-      map['userId'],
-      map['showtime'],
-      List<String>.from(map['seatNumbers'] ?? []),
-      (map['amount'] as num?)?.toDouble(),
-      map['purchaseDate'],
-      map['paymentStatus'],
-    );
-  }
+  // Object for fetch from Firebase
+factory TicketModel.fromDocument(DocumentSnapshot doc) {
+  return TicketModel(
+    doc.id,
+    doc.get('movieId'),
+    doc.get('movieTitle'),
+    doc.get('userId'),
+    doc.get('showtime'),
+    doc.get('seatNumbers'),
+    doc.get('cinemaLocation'),
+    (doc.get('amount') as num?)?.toDouble(),
+    doc.get('purchaseDate'),
+    doc.get('paymentStatus'),
+  );
+}
 
-  //# Object for saving to Firebase
+  // Object for saving to Firebase
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'movieId': movieId,
-      'cinemaId': cinemaId,
+      'movieTitle': movieTitle,
       'userId': userId,
       'showtime': showtime,
       'seatNumbers': seatNumbers,
+      'cinemaLocation': cinemaLocation,
       'amount': amount,
       'purchaseDate': purchaseDate,
       'paymentStatus': paymentStatus,

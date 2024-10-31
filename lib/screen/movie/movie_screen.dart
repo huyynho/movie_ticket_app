@@ -36,7 +36,7 @@ class _MovieScreenState extends State<MovieScreen> {
           {context.loaderOverlay.hide()},
       },
     );
-    context.loaderOverlay.show();
+    // context.loaderOverlay.show();
 
     return Scaffold(
       appBar: AppBar(

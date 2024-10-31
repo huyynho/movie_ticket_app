@@ -29,7 +29,7 @@ class MovieModel {
     this.price,
   );
 
-  //# Object for fetch from Firebase
+  // Object for fetch from Firebase
   factory MovieModel.fromDocument(DocumentSnapshot doc) {
     return MovieModel(
       doc.id,
@@ -47,7 +47,7 @@ class MovieModel {
     );
   }
 
-  //# Object for saving to Firebase
+  // Object for saving to Firebase
   Map<String, dynamic> toMap() {
     return {
       'title': title,

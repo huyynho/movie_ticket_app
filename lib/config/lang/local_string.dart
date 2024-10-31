@@ -35,7 +35,11 @@ class LocalString extends Translations {
           "readLess": "Ẩn bớt",
           "movie": "Phim",
           "seatNumber": "Số ghế",
-          "totalAmount": "Tổng tiền"
+          "totalAmount": "Tổng tiền",
+          "ticket": "Vé xem phim",
+          "backToHome": "Quay về trang chủ",
+          "messageTicket":
+              "Bạn đã đặt vé thành công. Khi đến rạp chiếu phim, hãy đưa QR này cho nhân viên để được hỗ trợ"
         },
         "en_EN": {
           "titleApp": "Movies App",
@@ -69,7 +73,11 @@ class LocalString extends Translations {
           "readLess": "Read less",
           "movie": "Movie",
           "seatNumber": "Seat Number",
-          "totalAmount": "Total Amount"
+          "totalAmount": "Total Amount",
+          "ticket": "Ticket",
+          "backToHome": "Back To Home",
+          "messageTicket":
+              "You have successfully booked your ticket. When you arrive at the cinema, please show this QR code to the staff for assistance."
         }
       };
 }

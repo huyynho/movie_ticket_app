@@ -7,6 +7,7 @@ import 'package:movie_ticket/common/splash/splash_screen.dart';
 import 'package:movie_ticket/screen/detail/detail_screen.dart';
 import 'package:movie_ticket/screen/movie/movie_screen.dart';
 import 'package:movie_ticket/screen/seat/seat_screen.dart';
+import 'package:movie_ticket/screen/ticket/ticket_screen.dart';
 
 class AppRouter {
   static final router = [
@@ -33,6 +34,10 @@ class AppRouter {
       name: AppRouterName.booking,
       page: () => SeatScreen(movie: Get.arguments),
     ),
+    GetPage(
+      name: AppRouterName.ticket,
+      page: () => TicketScreen(ticket: Get.arguments),
+    ),
   ];
 }
 
@@ -43,4 +48,5 @@ class AppRouterName {
   static const movie = '/movie';
   static const detail = '/detail';
   static const booking = '/booking';
+  static const ticket = '/ticket';
 }
