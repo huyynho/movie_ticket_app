@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:movie_ticket/config/color/color.dart';
 import 'package:movie_ticket/config/route/routes.dart';
 import 'package:movie_ticket/model/ticket_model.dart';
-import 'package:movie_ticket/screen/seat/seat_controller.dart';
+import 'package:movie_ticket/controller/seat_controller.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class TicketScreen extends StatefulWidget {
@@ -47,7 +47,8 @@ class _TicketScreenState extends State<TicketScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 100),
+            const SizedBox(height: 50),
+            // QR
             Center(
               child: QrImageView(
                 data: widget.ticket.id.toString(),
@@ -57,6 +58,7 @@ class _TicketScreenState extends State<TicketScreen> {
             ),
             const SizedBox(height: 20),
 
+            // Message
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
@@ -170,7 +172,7 @@ class _TicketScreenState extends State<TicketScreen> {
                   ),
                 ),
                 onPressed: () {
-                  Get.offNamed(AppRouterName.movie);
+                  Get.offNamed(AppRouterName.home);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

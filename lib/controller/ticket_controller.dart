@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_ticket/config/route/routes.dart';
@@ -15,6 +16,7 @@ class TicketController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    Get.put(FirebaseAuth.instance);
   }
 
   @override
@@ -24,7 +26,6 @@ class TicketController extends GetxController {
     String? id,
     required String movieId,
     required String movieTitle,
-    required String userId,
     required String showtime,
     required String seatNumbers,
     required String cinemaLocation,
@@ -47,11 +48,13 @@ class TicketController extends GetxController {
 
     isLoading.value = true;
 
+    final userId = Get.find<FirebaseAuth>().currentUser?.uid;
+
     final TicketModel ticket = TicketModel(
         id,
+        userId,
         movieId,
         movieTitle,
-        userId,
         showtime,
         seatNumbers,
         cinemaLocation,

@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemesApp.dark,
             debugShowCheckedModeBanner: false,
             getPages: AppRouter.router,
-            initialRoute: AppRouterName.movie,
+            initialRoute: AppRouterName.splash,
           );
         },
       ),

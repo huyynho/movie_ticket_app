@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:movie_ticket/config/color/color.dart';
 import 'package:movie_ticket/config/route/routes.dart';
 import 'package:movie_ticket/model/movie_model.dart';
-import 'movie_controller.dart';
+import '../../controller/movie_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:intl/intl.dart';
 
@@ -40,6 +39,7 @@ class _MovieScreenState extends State<MovieScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColor.primary,
         title: Text(
           'titleApp'.tr,
@@ -49,19 +49,26 @@ class _MovieScreenState extends State<MovieScreen> {
             color: Colors.white,
           ),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.white,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         actions: [
-          IconButton(
-            iconSize: 30,
-            color: Colors.white,
-            icon: const Icon(Icons.account_circle_sharp),
-            onPressed: () {},
+          Row(
+            children: [
+              Obx(() => Text(
+                    _movieController.currentUser.value?.name ?? '',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
+              IconButton(
+                iconSize: 30,
+                color: Colors.white,
+                icon: const Icon(Icons.account_circle_sharp),
+                onPressed: () {
+                  showAccountInfo(context);
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -192,41 +199,6 @@ class _MovieScreenState extends State<MovieScreen> {
           ),
         ],
       ),
-
-      // Bottom Menu
-      bottomNavigationBar: Obx(() {
-        return BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.home),
-              label: 'home'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.qr_code),
-              label: 'myTicket'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.settings),
-              label: 'setting'.tr,
-            ),
-          ],
-          currentIndex: _movieController.selectedIndex.value,
-          selectedItemColor: AppColor.primary,
-          onTap: (index) {
-            _movieController.changeIndex(index);
-            switch (index) {
-              case 0:
-                break;
-              case 1:
-                // Get.toNamed('/ticket');
-                break;
-              case 2:
-                // Get.toNamed('/settings');
-                break;
-            }
-          },
-        );
-      }),
     );
   }
 }
@@ -322,4 +294,96 @@ class MovieCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void showAccountInfo(BuildContext context) {
+  final MovieController controller = Get.find<MovieController>();
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return Container(
+        padding: const EdgeInsets.all(20.0),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10.0,
+              offset: Offset(0, -2),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Title
+            Text(
+              "accountInfo".tr,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: AppColor.primary,
+              ),
+            ),
+            const SizedBox(height: 20),
+            // Name
+            Text(
+              "${'name'.tr}: ${controller.currentUser.value?.name ?? ''}",
+              style: const TextStyle(fontSize: 14),
+            ),
+            const SizedBox(height: 10),
+            // Email
+            Text(
+              "${'email'.tr}:  ${controller.currentUser.value?.email ?? ''}",
+              style: const TextStyle(fontSize: 14),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: AppColor.primary.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Get.toNamed(AppRouterName.login);
+                    },
+                    child: Text(
+                      "logOut".tr,
+                      style: const TextStyle(color: AppColor.primary),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: AppColor.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      "close".tr,
+                      style: const TextStyle(color: AppColor.grey),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

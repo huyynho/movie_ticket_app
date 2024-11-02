@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:movie_ticket/config/color/color.dart';
 import 'package:movie_ticket/config/route/routes.dart';
 import 'package:movie_ticket/model/movie_model.dart';
-import 'package:movie_ticket/screen/detail/detail_controller.dart';
+import 'package:movie_ticket/controller/detail_controller.dart';
 import 'package:readmore/readmore.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -226,7 +226,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                 ),
                 onPressed: () {
-                  Get.toNamed(AppRouterName.booking, arguments: widget.movie);
+                  Get.toNamed(AppRouterName.seat, arguments: widget.movie);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

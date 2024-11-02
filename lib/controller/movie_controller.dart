@@ -3,21 +3,27 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:movie_ticket/model/movie_model.dart';
+import 'package:movie_ticket/model/user_model.dart';
 import 'package:movie_ticket/utils/common_value/common_message.dart';
 import 'package:movie_ticket/utils/firebase/firebase_movie.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_ticket/utils/firebase/firebase_user.dart';
 
 class MovieController extends GetxController {
-  final MovieService _service = MovieService();
+  final MovieService _movieService = MovieService();
+  final UserService _useService = UserService();
   List<MovieModel> movieData = <MovieModel>[].obs;
   RxList<String> imageCarousels = <String>[].obs;
   RxBool isLoading = false.obs;
-  RxInt selectedIndex = 0.obs;
   RxInt index = 1.obs;
-
+  Rx<UserModel?> currentUser = Rx<UserModel?>(null);
+ 
   @override
   void onInit() {
     super.onInit();
+    Get.put(FirebaseAuth.instance);
+    getUserByUserId();
   }
 
   @override
@@ -25,10 +31,13 @@ class MovieController extends GetxController {
     await getData();
   }
 
-  void changeIndex(int index) {
-    selectedIndex.value = index;
+  Future<void> getUserByUserId() async {
+    isLoading.value = true;
+    final userId = Get.find<FirebaseAuth>().currentUser?.uid;
+    currentUser.value = await _useService.getUserByUserId(userId ?? "");
+    isLoading.value = false;
   }
-  
+
   Future<void> getData() async {
     isLoading.value = true;
 
@@ -54,7 +63,7 @@ class MovieController extends GetxController {
   }
 
   Future<void> getAndFilterMovies(String search) async {
-    List<MovieModel> result = await _service.getAllMovies();
+    List<MovieModel> result = await _movieService.getAllMovies();
 
     movieData.assignAll(result);
 
@@ -98,7 +107,7 @@ class MovieController extends GetxController {
       price
     );
 
-    String resultAdd = await _service.addMovie(movie);
+    String resultAdd = await _movieService.addMovie(movie);
     if (resultAdd.isNotEmpty) {
       Get.showSnackbar(
         GetSnackBar(

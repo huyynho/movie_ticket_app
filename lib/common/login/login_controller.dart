@@ -37,7 +37,7 @@ class LoginController extends GetxController {
           duration: const Duration(seconds: 3),
         ),
       );
-      Get.toNamed(AppRouterName.movie);
+      Get.toNamed(AppRouterName.home);
     }
   }
 }

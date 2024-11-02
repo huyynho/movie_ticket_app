@@ -53,8 +53,8 @@ class MovieService {
 
   // Get all movies
   Future<List<MovieModel>> getAllMovies() async {
-    final QuerySnapshot thingsBoughtResult = await fireStoreInstance.collection(CollectionName.movies).get();
-    final List<MovieModel> result = thingsBoughtResult.docs.map((e) => MovieModel.fromDocument(e)).toList();
+    final QuerySnapshot querySnapshot = await fireStoreInstance.collection(CollectionName.movies).get();
+    final List<MovieModel> result = querySnapshot.docs.map((e) => MovieModel.fromDocument(e)).toList();
     return result;
   }
 

@@ -23,46 +23,12 @@ Future<String> handleCommonErrorFirebase(
   }
 }
 
-class FirebaseAuth {
-  static Future<String> createUserWithEmailPassword(
-      {required String name,
-      required String email,
-      required String password}) async {
-    String result = '';
-    result = await handleCommonErrorFirebase(handleFunc: () async {
-      await authInstance.createUserWithEmailAndPassword(
-          email: email, password: password);
-      final User? user = authInstance.currentUser;
-      final String? uID = user?.uid;
-
-      await fireStoreInstance.collection('users').doc(uID).set(
-            UserModel(
-              uID,
-              name,
-              email,
-              password,
-              CommonMessage.roleUser,
-            ).toMap(),
-          );
-    });
-    return result;
-  }
-
-  static Future<String> signInWithEmailPassword(
-      {required String email, required String password}) async {
-    String result = '';
-    result = await handleCommonErrorFirebase(handleFunc: () async {
-      await authInstance.signInWithEmailAndPassword(
-          email: email, password: password);
-    });
-    return result;
-  }
-
+class UserService {
   // Get user by userId
   Future<UserModel?> getUserByUserId(String userId) async {
     final QuerySnapshot querySnapshot = await fireStoreInstance
         .collection(CollectionName.users)
-        .where('userId', isEqualTo: userId)
+        .where('id', isEqualTo: userId)
         .limit(1)
         .get();
 

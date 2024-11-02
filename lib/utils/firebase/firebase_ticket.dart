@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:movie_ticket/model/ticket_model.dart';
 import 'package:movie_ticket/utils/checker/network_checker.dart';
 import 'package:movie_ticket/utils/common_value/collection_name.dart';
@@ -79,24 +81,23 @@ class TicketService {
   // Delete ticket by id
   Future<String> deleteTicket(String id) async {
     return await handleCommonErrorFirebase(handleFunc: () async {
-      await fireStoreInstance.collection(CollectionName.tickets).doc(id).delete();
+      await fireStoreInstance
+          .collection(CollectionName.tickets)
+          .doc(id)
+          .delete();
     });
   }
 
-    // Get tickets by userId
+  // Get tickets by userId
   Future<List<TicketModel>> getTicketsByUserId(String userId) async {
-    List<TicketModel> tickets = [];
-    await handleCommonErrorFirebase(handleFunc: () async {
-      QuerySnapshot querySnapshot = await fireStoreInstance
-          .collection(CollectionName.tickets)
-          .where('userId', isEqualTo: userId)
-          .get();
+    final QuerySnapshot querySnapshot = await fireStoreInstance
+        .collection(CollectionName.tickets)
+        .where('userId', isEqualTo: userId)
+        .get();
 
-      tickets = querySnapshot.docs
-          .map((doc) => TicketModel.fromDocument(doc))
-          .toList();
-    });
+    final List<TicketModel> tickets =
+        querySnapshot.docs.map((doc) => TicketModel.fromDocument(doc)).toList();
+
     return tickets;
   }
-
 }

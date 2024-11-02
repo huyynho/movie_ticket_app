@@ -12,9 +12,24 @@ class SeatController extends GetxController {
   List<SeatDetailModel> seatDetail = <SeatDetailModel>[].obs;
   RxList<String> selectedSeats = <String>[].obs;
   RxString selectedSeatNames = ''.obs;
-  RxList<String> availableShowtimes = ['18:00', '20:00', '22:00'].obs;
-  RxList<String> availableCinemas =
-      ['Cinema Ha Noi', 'Cinema Sai Gon', 'Cinema Vung Tau'].obs;
+  RxList<String> availableShowtimes = [
+    '08:00',
+    '10:00',
+    '12:00',
+    '14:00',
+    '16:00',
+    '18:00',
+    '20:00',
+    '22:00'
+  ].obs;
+  RxList<String> availableCinemas = [
+    'Cinema Vung Tau',
+    'Cinema Ha Noi',
+    'Cinema Sai Gon',
+    'Cinema Hai Phong',
+    'Cinema Da Nang',
+    'Cinema Da Lat'
+  ].obs;
   RxString selectedShowtime = ''.obs;
   RxString selectedCinema = ''.obs;
   RxDouble totalPrice = 0.0.obs;

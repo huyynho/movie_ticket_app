@@ -6,8 +6,8 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:movie_ticket/config/color/color.dart';
 import 'package:movie_ticket/model/movie_model.dart';
 import 'package:movie_ticket/model/seat_detail_model.dart';
-import 'package:movie_ticket/screen/seat/seat_controller.dart';
-import 'package:movie_ticket/screen/ticket/ticket_controller.dart';
+import 'package:movie_ticket/controller/seat_controller.dart';
+import 'package:movie_ticket/controller/ticket_controller.dart';
 import 'package:movie_ticket/utils/common_value/common_status.dart';
 
 class SeatScreen extends StatefulWidget {
@@ -353,7 +353,6 @@ class _SeatScreenState extends State<SeatScreen> {
                 _ticketController.addTicket(
                     movieId: widget.movie.id ?? "",
                     movieTitle: widget.movie.title ?? "",
-                    userId: widget.movie.id ?? "",
                     showtime: _seatController.selectedShowtime.value,
                     seatNumbers: _seatController.selectedSeatNames.value,
                     cinemaLocation: _seatController.selectedCinema.value,
