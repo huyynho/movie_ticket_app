@@ -154,7 +154,7 @@ class _MovieScreenState extends State<MovieScreen> {
                         hintText: 'searchMovie'.tr,
                         border: InputBorder.none,
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Theme.of(context).scaffoldBackgroundColor,
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 10),
                       ),

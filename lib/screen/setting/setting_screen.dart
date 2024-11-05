@@ -34,7 +34,7 @@ class SettingScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: _controller.isDarkTheme.value ? Colors.grey[800] : Colors.grey[200],
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: DropdownButton<String>(

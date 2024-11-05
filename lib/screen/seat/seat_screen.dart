@@ -58,8 +58,10 @@ class _SeatScreenState extends State<SeatScreen> {
         children: [
           const SizedBox(height: 16),
           Text("screen".tr,
-              style: const TextStyle(
-                  color: AppColor.grey,
+              style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : AppColor.grey,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)),
           const Divider(color: AppColor.grey, thickness: 5),
@@ -271,20 +273,32 @@ class _SeatScreenState extends State<SeatScreen> {
                           const SizedBox(height: 8),
                           Obx(() => Text(
                                 '${'seatNumber'.tr}: ${_seatController.selectedSeatNames.value}',
-                                style: const TextStyle(
-                                    color: AppColor.grey, fontSize: 14),
+                                style: TextStyle(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : AppColor.grey,
+                                    fontSize: 14),
                               )),
                           const SizedBox(height: 8),
                           Obx(() => Text(
                                 '${'showtime'.tr}: ${_seatController.selectedShowtime.value}',
-                                style: const TextStyle(
-                                    color: AppColor.grey, fontSize: 14),
+                                style: TextStyle(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : AppColor.grey,
+                                    fontSize: 14),
                               )),
                           const SizedBox(height: 8),
                           Obx(() => Text(
                                 '${'cinemaLocation'.tr}: ${_seatController.selectedCinema.value}',
-                                style: const TextStyle(
-                                    color: AppColor.grey, fontSize: 14),
+                                style: TextStyle(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : AppColor.grey,
+                                    fontSize: 14),
                               )),
                           const SizedBox(height: 8),
                         ],

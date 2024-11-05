@@ -19,6 +19,7 @@ class MyTicketController extends GetxController {
     isLoading.value = true;
     final userId = Get.find<FirebaseAuth>().currentUser?.uid;
     final result = await _ticketService.getTicketsByUserId(userId ?? "");
+    result.sort((a, b) => b.purchaseDate!.compareTo(a.purchaseDate!));
     tickets.assignAll(result);
     isLoading.value = false;
   }

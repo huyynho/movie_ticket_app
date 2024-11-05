@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:movie_ticket/config/color/color.dart';
 import 'package:movie_ticket/config/route/routes.dart';
 import 'package:movie_ticket/model/ticket_model.dart';
@@ -74,15 +75,20 @@ class TicketCard extends StatelessWidget {
         ),
         elevation: 4,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: Row(
             children: [
               // QR
-              Center(
-                child: QrImageView(
-                  data: ticket.id.toString(),
-                  version: QrVersions.auto,
-                  size: 100,
+              Container(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey[200]
+                    : Colors.transparent,
+                child: Center(
+                  child: QrImageView(
+                    data: ticket.id.toString(),
+                    version: QrVersions.auto,
+                    size: 100,
+                  ),
                 ),
               ),
               const SizedBox(width: 16),
@@ -110,9 +116,19 @@ class TicketCard extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                     const SizedBox(height: 4),
-                    Text(
-                      '${'seatNumber'.tr}: ${ticket.seatNumbers}',
-                      style: TextStyle(color: Colors.grey[600]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${'seatNumber'.tr}: ${ticket.seatNumbers}',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                        Text(
+                          DateFormat('dd/MM/yyyy')
+                              .format(ticket.purchaseDate!.toDate()),
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                      ],
                     ),
                   ],
                 ),

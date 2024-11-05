@@ -49,11 +49,16 @@ class _TicketScreenState extends State<TicketScreen> {
           children: [
             const SizedBox(height: 50),
             // QR
-            Center(
-              child: QrImageView(
-                data: widget.ticket.id.toString(),
-                version: QrVersions.auto,
-                size: 200,
+            Container(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.grey[200]
+                  : Colors.transparent,
+              child: Center(
+                child: QrImageView(
+                  data: widget.ticket.id.toString(),
+                  version: QrVersions.auto,
+                  size: 200,
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -98,20 +103,32 @@ class _TicketScreenState extends State<TicketScreen> {
                             const SizedBox(height: 8),
                             Text(
                               '${'seatNumber'.tr}: ${widget.ticket.seatNumbers}',
-                              style: const TextStyle(
-                                  color: AppColor.grey, fontSize: 14),
+                              style: TextStyle(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : AppColor.grey,
+                                  fontSize: 14),
                             ),
                             const SizedBox(height: 8),
                             Text(
                               '${'showtime'.tr}: ${widget.ticket.showtime}',
-                              style: const TextStyle(
-                                  color: AppColor.grey, fontSize: 14),
+                              style: TextStyle(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : AppColor.grey,
+                                  fontSize: 14),
                             ),
                             const SizedBox(height: 8),
                             Text(
                               '${'cinemaLocation'.tr}: ${widget.ticket.cinemaLocation}',
-                              style: const TextStyle(
-                                  color: AppColor.grey, fontSize: 14),
+                              style: TextStyle(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : AppColor.grey,
+                                  fontSize: 14),
                             ),
                             const SizedBox(height: 8),
                           ],
