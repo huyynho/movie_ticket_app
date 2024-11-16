@@ -43,6 +43,9 @@ class LocalString extends Translations {
           "totalAmount": "Tổng tiền",
           "ticket": "Vé xem phim",
           "backToHome": "Quay về trang chủ",
+          "revenueReport": "Báo cáo doanh thu",
+          "totalRevenue": "Tổng doanh thu",
+          "noRevenueDataAvailable": "Chưa có dữ liệu doanh thu",
           "messageTicket":
               "Bạn đã đặt vé thành công. Khi đến rạp chiếu phim, hãy đưa QR này cho nhân viên để được hỗ trợ"
         },
@@ -86,6 +89,9 @@ class LocalString extends Translations {
           "totalAmount": "Total Amount",
           "ticket": "Ticket",
           "backToHome": "Back To Home",
+          "revenueReport": "Revenue Report",
+          "totalRevenue": "Total Revenue",
+          "noRevenueDataAvailable": "No revenue data available",
           "messageTicket":
               "You have successfully booked your ticket. When you arrive at the cinema, please show this QR code to the staff for assistance."
         }

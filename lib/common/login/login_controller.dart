@@ -13,9 +13,7 @@ class LoginController extends GetxController {
   }) async {
     isLoading.value = false;
     final String errorResult = await FirebaseAuth.signInWithEmailPassword(
-      email: email,
-      password: password
-    );
+        email: email, password: password);
     isLoading.value = false;
     if (errorResult.isNotEmpty) {
       Get.showSnackbar(
@@ -37,7 +35,17 @@ class LoginController extends GetxController {
           duration: const Duration(seconds: 3),
         ),
       );
-      Get.toNamed(AppRouterName.home);
+
+      final user = await FirebaseAuth.getUser();
+      if (user != null) {
+        if (user.role == 'admin') {
+          Get.toNamed(AppRouterName.report);
+        } else {
+          Get.toNamed(AppRouterName.home);
+        }
+      } else {
+        Get.toNamed(AppRouterName.home);
+      }
     }
   }
 }

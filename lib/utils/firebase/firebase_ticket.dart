@@ -62,6 +62,17 @@ class TicketService {
     return ticket;
   }
 
+  //# Get all ticket
+  Future<List<TicketModel>> getAllTicket() async {
+    final QuerySnapshot querySnapshot =
+        await fireStoreInstance.collection(CollectionName.tickets).get();
+
+    final List<TicketModel> tickets =
+        querySnapshot.docs.map((doc) => TicketModel.fromDocument(doc)).toList();
+
+    return tickets;
+  }
+
   // Get tickets by movieId
   Future<List<TicketModel>> getTicketsByMovieId(String movieId) async {
     List<TicketModel> tickets = [];

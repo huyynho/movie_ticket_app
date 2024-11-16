@@ -59,10 +59,12 @@ class FirebaseAuth {
   }
 
   // Get user by userId
-  Future<UserModel?> getUserByUserId(String userId) async {
+  static Future<UserModel?> getUser() async {
+    final User? user = authInstance.currentUser;
+    final String? uID = user?.uid;
     final QuerySnapshot querySnapshot = await fireStoreInstance
         .collection(CollectionName.users)
-        .where('userId', isEqualTo: userId)
+        .where('id', isEqualTo: uID)
         .limit(1)
         .get();
 

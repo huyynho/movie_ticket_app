@@ -8,6 +8,7 @@ import 'package:movie_ticket/screen/detail/detail_screen.dart';
 import 'package:movie_ticket/screen/home/home_screen.dart';
 import 'package:movie_ticket/screen/movie/movie_screen.dart';
 import 'package:movie_ticket/screen/my_ticket/my_ticket_screen.dart';
+import 'package:movie_ticket/screen/report/report_screen.dart';
 import 'package:movie_ticket/screen/seat/seat_screen.dart';
 import 'package:movie_ticket/screen/setting/setting_screen.dart';
 import 'package:movie_ticket/screen/ticket/ticket_screen.dart';
@@ -53,6 +54,10 @@ class AppRouter {
       name: AppRouterName.setting,
       page: () => SettingScreen(),
     ),
+    GetPage(
+      name: AppRouterName.report,
+      page: () => ReportScreen(),
+    ),
   ];
 }
 
@@ -67,4 +72,5 @@ class AppRouterName {
   static const ticket = '/ticket';
   static const myticket = '/myticket';
   static const setting = '/setting';
+  static const report = '/report';
 }
