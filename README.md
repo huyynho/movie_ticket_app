@@ -1,6 +1,6 @@
 # movie_ticket
 
-A new Flutter project.
+Movie Ticket Booking App using Flutter and Firebase
 
 ## Getting Started
 
