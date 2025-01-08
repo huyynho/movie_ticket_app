@@ -8,7 +8,8 @@
 </ul>
 
 ## Mô Tả Dự Án
-Slide: https://github.com/huyynho/movie_ticket_app/blob/master/assets/images/slide/Flutter10_LeNgocHuy.pptx
+PPT Slide: https://github.com/huyynho/movie_ticket_app/blob/master/assets/images/slide/Flutter10_LeNgocHuy.pptx
+Video Demo: https://www.youtube.com/watch?v=p_CDgC8cvk0&t=244s
 
 #### Mục Tiêu:
 <ul>
